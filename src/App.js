@@ -17,6 +17,8 @@ const App = () => {
   const onClickAdd = () => {
     if (todoText === "") return;
     const newTodos = [...incompleteTodos, todoText];
+    //ここでDBに入力されたタスクを登録するAPIを実行する
+    
     setIncompleteTodos(newTodos);
     setTodoText("");
   };
