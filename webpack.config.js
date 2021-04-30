@@ -8,7 +8,7 @@ module.exports = {
   },
     devServer: {
     contentBase: __dirname + '/public',
-    port: 8080,
+    port: 3000,
     publicPath: '/js/'
   },
   devtool: "eval-source-map",
