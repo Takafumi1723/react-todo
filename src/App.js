@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "./styles.css";
+import axios from "axios";
+
+axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 
 import InputTodo from "./components/InputTodo.js";
 import IncompleteTodos from "./components/IncompleteTodos.js";
@@ -18,7 +22,19 @@ const App = () => {
     if (todoText === "") return;
     const newTodos = [...incompleteTodos, todoText];
     //ここでDBに入力されたタスクを登録するAPIを実行する
-    
+    const param = {
+      contents: todoText,
+      complete: false,
+    }
+    axios.post("http://localhost:8088/saveTask",param)
+    .then(res => {
+      const result = res.data;
+      console.log(result)
+      console.log("APIは正常に実行されました。")
+    })
+    .catch(e => {
+      console.log(e);
+    })
     setIncompleteTodos(newTodos);
     setTodoText("");
   };
